@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  nav {
+    display: inline-block;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  section {
+    margin-bottom: 20px;
+  }
+  .projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .project-card {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  .project-card img {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  form textarea {
+    height: 100px;
+  }
+  form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  input, textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+.error {
+    border: 1px solid red !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Angad's Portfolio</h1>
+  <nav>
+    <a href="#intro">Introduction</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+  <section id="intro">
+    <h2>Introduction</h2>
+    <p>Welcome to my portfolio! I am a web developer passionate about creating beautiful and functional websites.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <img src="project1.jpg" alt="Project 1">
+        <h3>Project 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at venenatis magna.</p>
+      </div>
+      <div class="project-card">
+        <img src="project2.jpg" alt="Project 2">
+        <h3>Project 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at venenatis magna.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form id="contactForm" action="#" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <span id="nameError" class="error"></span>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+      <span id="emailError" class="error"></span>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message"></textarea>
+      <span id="messageError" class="error"></span>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+</div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Fetch input values
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var message = document.getElementById('message').value.trim();
+
+      // Validation
+      var isValid = true;
+
+      // Name validation
+      if (name.length < 3) {
+          isValid = false;
+          document.getElementById('name').classList.add('error');
+      } else {
+          document.getElementById('name').classList.remove('error');
+      }
+
+      // Email validation using a simple regex pattern
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+          isValid = false;
+          document.getElementById('email').classList.add('error');
+      } else {
+          document.getElementById('email').classList.remove('error');
+      }
+
+      // Message validation
+      if (message.length < 10) {
+          isValid = false;
+          document.getElementById('message').classList.add('error');
+      } else {
+          document.getElementById('message').classList.remove('error');
+      }
+
+      // If the form is valid, you can proceed with form submission
+      if (isValid) {
+          // You can submit the form here, or perform any other action
+          console.log("Form submitted successfully!");
+      } else {
+          console.log("Form validation failed. Please check your inputs.");
+      }
+  });
+</script>
+
+</body>
+</html>
